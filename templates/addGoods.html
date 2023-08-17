@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加商品</title>
+  <link href="/static/css/reset.css" rel="stylesheet" />
+  <link href="/static/css/common.css" rel="stylesheet" />
+  <link href="/static/css/icon/css/font.css" rel="stylesheet">
+  <link href="/static/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/addGoods.css">
+  <link href="/static/css/test.css" rel="stylesheet">
+</head>
+
+<body>
+  <!--页面头部-->
+  <div id="header">
+    <!--导航栏-->
+    <div class="headerInner">
+      <!--四个导航链接-->
+      <div class="header_nav">
+        <ul>
+          <li class="active"><a href="/index/" style="color:black;"><i class="icon fa-home"></i>首页</a>
+          </li>
+          <li><a href="/search/"><i class="icon fa-bullseye"></i>搜索</a></li>
+          <li><a href="/collection/?uid={{ request.session.uid }}"><i class="icon fa-heart"></i>收藏</a></li>
+          <li class="operate">
+              <a href="#"><i class="icon fa-steam"></i>操作</a>
+              <ul class="operate_list">
+                <li><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></li>
+                <li><a href="/index/?logout=1">退出</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+
+      <div class="userinfo">
+        <a href="/settings/?uid={{request.session.uid}}" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+        <a href="/shoppingCar/?uid={{request.session.uid}}" style="color:black;"><i class="shopcar icon fa-shopping-basket" aria-hidden="true"> 购物车</i></a>
+      </div>
+      <!--网站logo-->
+      <div class="header_logo">
+        <h1>
+          <img src="/static/images/logo.png" alt="物语logo" />
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="main" style="background-color:white;">
+    <form action="/addGoods/?uid={{request.session.uid}}&upload=1" method="post" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <table border="0" class="all_over" cellpadding="0" cellspacing="0" align="center">
+        <tr class="boxx">
+          <td class="less_b">商品名称</td>
+          <td class="omg"><input class="fast" type="text" name="name"></td>
+        </tr>
+        <tr class="boxx">
+          <td class="less_b">商品类型</td>
+          <td>
+            <!-- <span class="">请选择</span> -->
+            <select name="type">
+              <option value="电子商品">电子商品</option>
+              <option value="生活用品">生活用品</option>
+              <option value="食品">食品</option>
+              <option value="书籍">书籍</option>
+              <option value="男装">男装</option>
+              <option value="书籍">女装</option>
+              <option value="书籍">美妆</option>
+              <option value="书籍">家电</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="boxx">
+          <td class="less_b">商品图片</td>
+          <td>
+            <input class="fileImage" type="file" name="image">
+
+          </td>
+        </tr>
+        <tr class="boxx">
+          <td class="less_b">商品价格</td>
+          <td><input class="second" type="text" name="price"></td>
+        </tr>
+        <tr class="boxx">
+          <td class="less_b">商品参数</td>
+          <td><input class="fast" type="text" name="info"></td>
+        </tr>
+        <tr class="boxx">
+          <td class="less_b">描&ensp;&ensp;&ensp;&ensp;述</td>
+          <td><textarea name="details" class="third"></textarea></td>
+        </tr>
+        <tr class="boxx">
+          <td></td>
+          <td colspan="2" class="balance">
+            <input class="button" type="submit" value="立即上传">
+            <a href="/settings/?uid={{ request.session.uid }}" class="button" style="display:inline-block;color:white;">取消</a>
+<!--            <input class="button" type="button" value="取消">-->
+          </td>
+        </tr>
+      </table>
+    </form>
+    <span class="uid" style="display:none;">{{ request.session.uid }}</span>
+  </div>
+
+  <!--页脚部分-->
+  <div class="footer">
+    <table border="0" cellspcing="0" cellpadding="0">
+      <tr>
+        <td><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></td>
+        <td><a href="/myGoods/?uid={{ request.session.uid }}">我的商品</a></td>
+        <td><a href="">设置</a></td>
+        <td><a href="">联系我们</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/addGoods.js"></script>
+</body>
+</html>

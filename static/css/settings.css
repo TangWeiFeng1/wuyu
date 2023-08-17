@@ -1,0 +1,260 @@
+@charset "utf-8";
+
+body {
+  position: relative;
+}
+
+/* 头部样式 */
+.header_logo {
+  float: left;
+}
+
+.userinfo {
+  line-height: 56px;
+  float: right;
+  width: 15%;
+  font-size: 16px;
+  /* border:1px solid red; */
+}
+
+.settings {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.settings:hover {
+  color: gray;
+}
+
+.shopcar {
+  float: right;
+  cursor: pointer;
+}
+
+.shopcar:hover {
+  color: gray;
+}
+
+/* 主体样式 */
+.main {
+  width: 80%;
+  /* border:1px solid red; */
+  padding-top: 78px;
+  background-color: white;
+  position: absolute;
+  height: 445px;
+  left: 10%;
+  /* margin: 0 auto; */
+  /* overflow: hidden; */
+}
+
+/* 用户信息主盒子 */
+.userdetails {
+  float: left;
+  width: 39%;
+  height: 80%;
+  /* background-color: white; */
+  /* border-radius: 20px; */
+  position: relative;
+  /* border:2px solid transparent; */
+  /* box-shadow: 5px 5px 5px #888888; */
+  padding-top: 10px;
+  border-right: 1px solid rgb(220, 216, 216);
+  /* 取消鼠标竖线 */
+  /* caret-color: rgba(0, 0, 0, 0); */
+  /* border:1px solid red; */
+}
+
+/* 用户头像主盒子 */
+.user_logo {
+  width: 25%;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.user_logo:hover {
+  border: 2px solid gray;
+}
+
+/* 用户头像 */
+.user_logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* 用户详细信息 */
+.details {
+  margin-top: 10px;
+}
+
+.details table {
+  margin: 0 auto;
+  padding-top: 10px;
+  width: 60%;
+  font-size: 14px;
+  border-top: 1px solid rgb(221, 218, 218);
+}
+
+.details tr {
+  height: 32px;
+}
+
+.details tr td:first-child {
+  text-align: right;
+}
+
+.details tr td:last-child {
+  width: 60%;
+  text-align: center;
+}
+
+.modify {
+  float: right;
+  /* margin-right: 20px; */
+  cursor: pointer;
+  /* color:gray; */
+}
+
+.modify:hover {
+  /* color: gray; */
+  text-decoration: underline;
+}
+.td {
+  color: black;
+  padding:0;
+  float:left;
+  width:70px;
+  margin-top:5px;
+  text-align: left;
+}
+
+/* 订单列表 */
+.ordersList {
+  float: right;
+  width: 59%;
+  height: 85%;
+  /* 滚动条 */
+  overflow-y: scroll;
+  /* margin-top:-px; */
+  /* caret-color: rgba(0, 0, 0, 0); */
+  /* border:1px solid red; */
+  /* border-left:1px solid gray; */
+}
+
+/* 订单样式 */
+.ordersList li {
+  width: 98%;
+  height: 100px;
+  line-height: 100px;
+  border-bottom: 1px solid rgb(213, 210, 210);
+  /* border-radius: 20px; */
+  /* border: 2px solid transparent; */
+  /* background-color: white; */
+  margin-top: 10px;
+  /* box-shadow: 5px 5px 5px gray; */
+  padding-top: 10px;
+  padding-left: 5px;
+  /* position: relative; */
+}
+
+/* 订单图片样式 */
+.ordersList img {
+  width: 20%;
+  height: 90%;
+  border-radius: 20px;
+  float: left;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.ordersList img:hover {
+  border: 1px solid gray;
+}
+
+.orders {
+  /* border:1px solid red; */
+  width: 77%;
+  height: 60%;
+  margin-right: 10px;
+  float: right;
+}
+
+.order_info {
+  width: 80%;
+  height: 46px;
+  line-height: 46px;
+  float: left;
+  /* border:1px solid red; */
+}
+
+.order_price {
+  width: 18%;
+  height: 38px;
+  line-height: 38px;
+  float: right;
+  padding-left: 5px;
+  /* padding-right: 5px; */
+  /* border:1px solid gray; */
+  border-radius: 20px;
+}
+
+/* 订单按钮组样式 */
+.order_btns {
+  float: right;
+  width: 30%;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 10px;
+  /* position: absolute; */
+  /* border:1px solid red; */
+}
+
+.btns {
+  /* display: inline-block; */
+  float: left;
+  width: 40%;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 15px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid gray;
+  cursor: pointer;
+  font-weight: bold;
+  /* margin-left:20px; */
+}
+
+.btns:hover {
+  background-color: gray;
+  color: white;
+}
+
+
+.footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  caret-color: rgba(0, 0, 0, 0);
+  background-color: white;
+}
+
+.footer table {
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
+}
+
+.footer a {
+  color: gray;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

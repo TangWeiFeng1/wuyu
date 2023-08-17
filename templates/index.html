@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>物语网首页</title>
+  <link href="/static/css/reset.css" rel="stylesheet" />
+  <link href="/static/css/common.css" rel="stylesheet" />
+  <link href="/static/css/index.css" rel="stylesheet" />
+  <link href="/static/css/icon/css/font.css" rel="stylesheet">
+  <link href="/static/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app">
+    <!--页面头部-->
+    <div id="header">
+      <!--导航栏-->
+      <div class="headerInner">
+        <!--四个导航链接-->
+        <div class="header_nav">
+          <ul>
+            <li class="active"><a href="/index/" style="color:black;"><i class="icon fa-home"></i>首页</a>
+            </li>
+            <li><a href="/search/?uid={{request.session.uid}}"><i class="icon fa-bullseye"></i>搜索</a></li>
+            <li><a href="/collection/?uid={{request.session.uid}}"><i class="icon fa-heart"></i>收藏</a></li>
+            <li class="operate">
+              <a href="#"><i class="icon fa-steam"></i>操作</a>
+              <ul class="operate_list">
+                <li><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></li>
+                <li><a href="/myGoods/?uid={{ request.session.uid }}">我的卖品</a></li>
+<!--                <li><a href="/index/?logout=1">退出</a></li>-->
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="userinfo">
+          <span class="uid" style="display:none;">{{ request.session.uid }}</span>
+          {% if request.session.uid %}
+          <a href="/settings/?uid={{request.session.uid}}" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+          {% else %}
+          <a href="/login/" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+          {% endif %}
+          <a href="/shoppingCar/?uid={{request.session.uid}}" style="color:black;"><i class="shopcar icon fa-shopping-basket" aria-hidden="true"> 购物车</i></a>
+        </div>
+        <!--网站logo-->
+        <div class="header_logo">
+          <h1>
+            <img src="/static/images/logo.png" alt="物语logo" />
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="classify">分类 <i class="icon fa-angle-right"></i></div>
+    <div class="classification">
+      <ul>
+        <li><a href="/index/">全部</a></li>
+        {% for t in type_list %}
+        <li class="classify_li">{{ t.type }}</li>
+        {% endfor %}
+      </ul>
+      <div class="close_classification">
+        收起 <i class="icon fa-angle-up "></i>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="main_Inner">
+        <!--图片轮播-->
+        <div class="images" id="images">
+          <el-carousel indicator-position="outside" height="400px">
+            <el-carousel-item v-for="item in imageList" :key="item.id">
+              <a :href="item.id"><img class="img_goods" :src="item.idView"></a>
+            </el-carousel-item>
+          </el-carousel>
+          </el-carousel>
+        </div>
+      </div>
+      <!-- 商品列表 -->
+      <div class="goodslist">
+        <!-- 商品信息 -->
+        {% for goods in goods_list %}
+        <div class="goods">
+          <a class="goods_img" href="/goods/?gid={{ goods.gid }}">
+            <img src="{{ goods.logo }}">
+          </a>
+          <h3><a href="#">{{ goods.name }} - {{ goods.info }}</a></h3>
+          <span class="price">￥{{ goods.price }}</span>
+          <div class="icon_section">
+            <a href="/collection/?gid={{ goods.gid }}&uid={{ request.session.uid }}" class="collect">
+              <i class="icon fa-heart"></i>收藏
+            </a>
+            <a href="/shoppingCar/?gid={{ goods.gid }}&uid={{ request.session.uid }}" class="add">
+              <i class="icon fa-plus-circle"></i>添加
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+        <!--页码-->
+        <div class="page_list" style="margin-top:-50px;">
+          {% for i in a_list %}
+          <a href="/index/?page={{ i }}">{{ i }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 引入js文件 -->
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="/static/element-ui/lib/index.js"></script>
+
+  <script src="/static/js/index.js"></script>
+  <script src="/static/js/jquery.cookie.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+@charset "utf-8";
+body {
+  position: relative;
+}
+/* 导航栏样式 */
+.header_login_reg {
+  display: none;
+}
+/* 用户名盒子 */
+.userinfo {
+  line-height: 56px;
+  float: right;
+  width: 150px;
+  font-size: 16px;
+}
+
+.settings {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.settings:hover {
+  color: gray;
+}
+/* 购物车 */
+.shopcar {
+  float: right;
+  cursor: pointer;
+}
+
+.shopcar:hover {
+  color: gray;
+}
+.main {
+  position: absolute;
+  width:80%;
+  left:10%;
+  top:60px;
+  /* border:1px solid red; */
+}
+
+.main table {
+
+}
+.main table tr td:first-child {
+    padding-right:5px;
+    text-align:right;
+}
+
+
+.footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  caret-color: rgba(0, 0, 0, 0);
+  background-color: white;
+}
+
+.footer table {
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
+}
+
+.footer a {
+  color: gray;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

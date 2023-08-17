@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人信息</title>
+  <link href="/static/css/reset.css" rel="stylesheet">
+  <link href="/static/css/common.css" rel="stylesheet">
+  <link href="/static/css/icon/css/font.css" rel="stylesheet">
+  <link href="/static/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/settings.css">
+  <link rel="stylesheet" href="/static/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <!--页面头部-->
+  <div id="header">
+    <!--导航栏-->
+    <div class="headerInner">
+      <!--四个导航链接-->
+      <div class="header_nav">
+        <ul>
+          <li class="active"><a href="/index/"><i class="icon fa-home"></i>首页</a>
+          </li>
+          <li><a href="/search/?uid={{request.session.uid}}"><i class="icon fa-bullseye"></i>搜索</a></li>
+          <li><a href="/collection/?uid={{request.session.uid}}"><i class="icon fa-heart"></i>收藏</a></li>
+          <li class="operate">
+              <a href="#"><i class="icon fa-steam"></i>操作</a>
+              <ul class="operate_list">
+                <li><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></li>
+                <li><a href="/myGoods/?uid={{ request.session.uid }}">我的卖品</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+
+      <!--网站logo-->
+      <div class="header_logo">
+        <h1>
+          <img src="/static/images/logo.png" alt="物语logo" />
+        </h1>
+      </div>
+      <!-- 导航栏用户信息 -->
+      <div class="userinfo">
+        <a  href="" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+        <a href="/shoppingCar/?uid={{request.session.uid}}" style="color:black;"><i class="shopcar icon fa-shopping-basket" aria-hidden="true"> 购物车</i></a>
+      </div>
+    </div>
+  </div>
+  <span id="s_uid" style="display:none;">{{ request.session.uid }}</span>
+  <!-- 页面主体 -->
+  <div id="app" class="main">
+    <!-- 用户信息 -->
+    <div class="userdetails">
+      <!-- 用户头像 -->
+      <div class="user_logo">
+        <img src="{{ user.user_logo }}" alt="用户头像">
+      </div>
+      <!-- 详细信息 -->
+      <div class="details">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>用户名：</td>
+            <td class="uname">{{ user.username }}</td>
+          </tr>
+          <tr>
+            <td>性别：</td>
+            <td class="gen">{{ user.sex }}</td>
+          </tr>
+          <tr>
+            <td>年级：</td>
+            <td class="gra">{{ user.grade }}</td>
+          </tr>
+          <tr>
+            <td>联系电话：</td>
+            <td class="tele">{{ user.telephone }}</td>
+          </tr>
+          <tr>
+            <td>宿舍：</td>
+            <td class="dor">{{ user.dorm }}</td>
+          </tr>
+        </table>
+        <!-- <div class="modify user_modify">修改</div> -->
+        <el-button class="modify user_modify" type="text" @click="dialogVisible = true" style="margin-right:20px;color:gray;">
+          修改
+        </el-button>
+        <el-dialog title="修改" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+          <table id="modify_table" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="td">用户名：</td>
+              <td><input class="name" type="text"></td>
+            </tr>
+            <tr>
+              <td class="td">性别：</td>
+              <td><input class="gender" type="text"></td>
+            </tr>
+            <tr>
+              <td class="td">年级：</td>
+              <td><input class="grade" type="text"></td>
+            </tr>
+            <tr>
+              <td class="td">联系电话：</td>
+              <td><input class="tel" type="text"></td>
+            </tr>
+            <tr>
+              <td class="td">宿舍：</td>
+              <td><input class="dormitory" type="text"></td>
+            </tr>
+          </table>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button id="modify_btn" type="info" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+
+      </div>
+    </div>
+    <!-- 订单列表 -->
+    <ul class="ordersList">
+      <!-- 订单 -->
+      {% for order in orders_list %}
+      <li>
+        <img src="{{ order.logo }}" alt="商品">
+        <div class="orders">
+          <!-- 商品名称，交易时间，交易地点 -->
+          <div class="order_info">
+            <b>{{ order.name }} - 联系电话：{{ order.telephone }}</b><br>
+            <p style="margin-left:5px;">提货：{{ order.datetime|date:"Y-m-d H:i" }} - {{ order.region }}</p>
+          </div>
+          <!-- 订单价格 -->
+          <div class="order_price">
+            <span style="margin-right:10px;">￥{{ order.price }}</span>×<span>{{ order.count }}</span>
+          </div>
+        </div>
+        <!-- 订单按钮组 -->
+        <div class="order_btns">
+          <a style="color:black; font-weight:bold;" href="/settings/?delete={{ order.oid }}" class="btns comfirm">确认收货</a>
+          <span class="btns order_modify">修改</span>
+          <span class="oid" style="display:none;">{{ order.oid }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!--页脚部分-->
+  <div class="footer">
+    <table border="0" cellspcing="0" cellpadding="0">
+      <tr>
+        <td><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></td>
+        <td><a href="/myGoods/?uid={{ request.session.uid }}">我的卖品</a></td>
+        <td><a href="">设置</a></td>
+        <td><a href="/index/?logout=1">退出</a></td>
+      </tr>
+    </table>
+  </div>
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/element-ui/lib/index.js"></script>
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery.cookie.js"></script>
+  <script src="/static/js/settings.js"></script>
+</body>
+
+</html>

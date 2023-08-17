@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+body {
+  position: relative;
+}
+/* 头部样式 */
+.header_logo {
+  float: left;
+}
+
+.userinfo {
+  line-height: 56px;
+  float: right;
+  width: 15%;
+  font-size: 16px;
+  /* border:1px solid red; */
+}
+
+.settings {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.settings:hover {
+  color: gray;
+}
+
+.shopcar {
+  float: right;
+  cursor: pointer;
+}
+
+.shopcar:hover {
+  color: gray;
+}
+.main{
+  width:80%;
+  margin:0 auto;
+  height:500px;
+  top:55px;
+  left:10%;
+  padding-top:15px;
+  background-color: white;
+  position: absolute;
+  overflow-y: scroll;
+}
+.main .searchDiv {
+  width: 80%;
+  height:42px;
+  line-height: 42px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom:1px solid rgb(183, 179, 179);
+}
+.main .searchDiv i {
+  font-size: 30px;
+  color: black;
+  margin-right: 10px;
+}
+.main .searchDiv input {
+  width:55%;
+  height:32px;
+  line-height: 32px;
+  padding-left:20px;
+  border-radius: 20px;
+  border:1px solid gray;
+  text-align:center;
+}
+.searchDiv form{
+    display:inline-block;
+    width:90%;
+}
+#search_btn {
+    padding-left:5px;
+    text-align:center;
+    border-radius:20px;
+    display:inline-block;
+    width:60px;
+    height:32px;
+    line-height:30px;
+    background-color:gray;
+    color:white;
+    cursor:pointer;
+}
+#search_btn:hover{background-color:black;}
+.main .collect_list {
+  /* border:1px solid red; */
+  width: 80%;
+  margin:0 auto;
+}
+.main .collect_list .goods {
+  border:1px solid rgb(212, 211, 211);
+  /* width: 30%; */
+  width:240px;
+  height:240px;
+  float:left;
+  margin-left:18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+.main .collect_list .goods:hover {
+  border:1px solid rgb(130, 125, 125);
+}
+.main .collect_list .goods h3 {
+  font-weight: normal;
+  color: gray;
+  /* border:1px solid red; */
+  height:30px;
+  line-height: 30px;
+}
+.main .collect_list .goods h3:hover {
+  text-decoration: underline;
+}
+.main .collect_list .goods .price{
+  position: absolute;
+  top:5px;
+  right:5px;
+  color: gray;
+}
+.main .collect_list .goods img{
+  width:60%;
+  height:145px;
+}
+.main .collect_list .goods .icon_section {
+  width:100%;
+  height:25px;
+  line-height: 25px;
+  position:absolute;
+  bottom:0;
+}
+.main .collect_list .goods .icon_section a{
+  color: gray;
+  font-size:14px;
+  float:left;
+  width:50%;
+}
+.main .collect_list .goods .icon_section a:hover {
+  background-color: gray;
+  color:white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+/*背景颜色*/
+
+box-shadow:0 0 0 60px #eee inset;
+}

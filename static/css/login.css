@@ -1,0 +1,172 @@
+@charset "utf-8";
+/*登录注册内容样式*/
+.login_section{
+    color:#9b9b9b;
+    text-align:center;
+    margin:0 auto; /*居中*/
+    width:1200px;
+    padding:50px 20px 0; /*上下内边距为50像素左内边距为20像素右为0*/
+}
+/*logo样式*/
+#logo{
+    float:left; /*左浮动*/
+    margin-top:10px; /*上外边距为10像素*/
+    margin-left:50px; /*左外边距为50像素*/
+    color:rgba(128, 128, 128, 0.199);
+    font-size:32px;
+}
+/*登录，注册标题样式*/
+.login_title{
+    margin-top:100px;
+}
+#password {margin-top:-10px;}
+
+/*标题中无序列表样式*/
+.login_title ul{
+    font-size:22px;
+    line-height:34px; /*行高为34像素*/
+}
+.login_title ul li{
+    display:inline-block; /*变为行内块元素*/
+    margin:20px; /*上下左右外边距为20像素*/
+}
+/*无序列表中超链接样式*/
+.login_title ul li a{
+    color:#9b9b9b;
+}
+/*设置超链接class为active的样式*/
+.login_title ul li a.active{
+    color: #404040;
+    border-bottom: 2px solid #404040; /*设置下边框样式*/
+}
+/*登录中input样式*/
+.login_section input{
+    width:390px;
+    height:50px;
+    line-height:50px;
+    font-size:18px;
+    margin:0 auto;
+    display:block; /*变为块级元素，网页打开时显示*/
+    border: 1px solid #f5f5f5;
+    padding-left:10px; /*左内边距为10像素*/
+    outline:none; /*轮廓，当元素获得焦点框时焦点框为0*/
+}
+/*第三个input样式*/
+.login_section input:nth-of-type(2){
+    border-top:none; /*去除上边框样式*/
+    border-bottom:none; /*去除下边框样式*/
+}
+/*最后一个input样式*/
+.login_section input:last-child{
+    width:400px;
+    padding:0;
+    background-color:#404040;
+    color:#ffff;
+    border-radius:6px; /*边框圆角为6像素*/
+    margin-top:20px;
+    cursor: pointer; /*鼠标经过时鼠标变为小手*/
+}
+.login_section input:last-child:hover {
+    background-color: gray;
+}
+/*其他方式登录样式*/
+.login_other_way{
+    font-size:16px;
+    margin-top:50px;
+    display:inline-block;
+}
+.login_other_way a{
+    border-radius:50%; /*设置边框为圆形*/
+    width:32px;
+    height:32px;
+    line-height:32px;
+    color:#fff;
+    background:#000;
+    text-align:center;
+    display:inline-block;
+    margin:20px 10px;
+}
+.login_other_way a:hover {
+    background-color: gray;
+}
+/*注册表单样式*/
+.register{
+    display:none; /*网页打开时隐藏*/
+    width:520px; 
+    margin:0 auto;
+}
+/*注册表格样式*/
+.register table{
+    margin:0 auto;
+}
+/*注册表中input样式*/
+.register input{
+    width:260px;
+    height:20px;
+    margin-left:8px;
+    margin-top:18px;
+    border:1px solid gray;
+}
+/*注册表中h3标题样式*/
+.register_h3{
+    font-size:16px;
+    color:#404040;
+    float:right;
+}
+/*提示文字样式*/
+.register_remind{
+    float:left;
+    margin-left:10px;
+}
+/*注册表中图片样式*/
+.register img{
+    width:80px;
+    height:36px;
+    float:right;
+    margin-top:-36px;
+    margin-right:60px;
+}
+/*验证码提示文字样式*/
+.register_a{
+    font-size:6px;
+    float:right;
+    margin-top:5px;
+    margin-right:58px;
+}
+/*同意协议样式*/
+.register p{
+    float:left;
+    font-size:6px;
+}
+#t{
+    padding-top:10px;
+}
+/*超链接协议样式*/
+#t a{
+    display:inline-block;
+    color:blue;
+}
+/*注册表单中最后一个input样式*/
+.register input:last-child{
+    width:96px;
+    height:50px;
+    background:#404040;
+    color:white;
+    text-align:center;
+    padding-bottom:20px; /*下内边距为20像素*/
+    border-radius:6px; 
+    margin-top:10px;
+}
+.register input:last-child:hover {
+    background-color: gray;
+}
+
+#dorm {
+    height:25px;
+    width:120px;
+    border-radius:8px;
+    padding-left:5px;
+    font-size:12px;
+    cursor:pointer;
+}
+

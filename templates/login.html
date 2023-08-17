@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>登录</title>
+  <link href="/static/css/reset.css" rel="stylesheet">
+  <link href="/static/css/login.css" rel="stylesheet">
+  <link href="/static/css/common.css" rel="stylesheet">
+  <link href="/static/css/icon/css/font.css" rel="stylesheet">
+  <link href="/static/css/font.css" rel="stylesheet">
+  <link href="/static/css/code.css" rel="stylesheet">
+</head>
+
+<body>
+  <!--页面头部-->
+  <div id="header">
+    <!--导航栏-->
+    <div class="headerInner">
+      <!--三个导航链接-->
+      <div class="header_nav">
+        <ul>
+          <li class="active navigation"><a href="#"><i class="icon fa-home"></i>首页</a></li>
+          <li><a href="/search/?uid={{request.session.uid}}"><i class="icon fa-bullseye"></i>搜索</a></li>
+          <li class="collection"><a href="#"><i class="icon fa-heart"></i>收藏</a></li>
+        </ul>
+      </div>
+      <!--登录，注册按钮-->
+      <div class="header_login_reg">
+        <a href="/login/">登录</a>
+        <a href="#" onclick="changeDiv('register','enter')">注册</a>
+      </div>
+      <!--网站logo-->
+      <div class="header_logo">
+        <h1>
+          <img src="/static/images/logo.png" alt="物语logo" />
+        </h1>
+      </div>
+    </div>
+  </div>
+  <!--登录注册框-->
+  <div class="login_section">
+    <!--网站logo-->
+    <div id="logo">
+      <h1>W U Y U</h1>
+    </div>
+    <!--登录，注册标题-->
+    <div class="login_title">
+      <ul>
+        <li><a href="#" id="enter1" class="active" onclick="changeDiv('enter','register')">登录</a></li>
+        <li><a href="#" id="register1" onclick="changeDiv('register','enter')">注册</a></li>
+      </ul>
+    </div>
+    <!--填写登录表单数据-->
+    <div id="enter">
+      <form action="/login/" method="post">
+        <input id="username" type="text" name="username" placeholder="用户名" />
+
+          <div style="color:red;margin:0 auto;width:100px;height:40px;line-height:40px;">
+            {{msg}}</div>
+
+        <input id="password" type="password" name="password" placeholder="密码" />
+        <input id="login_btn" type="submit" name="submit" value="登录" />
+      </form>
+      <!--其他方式登录-->
+<!--      <div class="login_other_way">-->
+<!--        <p>社交账号登录</p>-->
+<!--        <a href="#" class="icon fa-weixin"></a>-->
+<!--        <a href="#" class="icon fa-qq"></a>-->
+<!--      </div>-->
+    </div>
+    <!--填写注册表单数据-->
+    <div class="register" id="register">
+      <form action="#" method="post" enctype="multipart/form-data">
+        <!--去除表格边框-->
+        <table border="0">
+          <!--用户名输入框-->
+          <tr>
+            <td>
+              <h3 class="register_h3">用户名:</h3>
+            </td>
+            <td>
+              <input id="reg_username" name="reg_username" type="text" />
+              <!--提示文字-->
+              <p class="register_remind reg_name">长度在1~6个字符</p>
+            </td>
+          </tr>
+          <!--密码输入框-->
+          <tr>
+            <td>
+              <h3 class="register_h3">密码:</h3>
+            </td>
+            <td>
+              <input id="reg_password" name="reg_password" type="password" />
+              <p class="register_remind reg_pwd">长度在6~12个字符内，数字，字母</p>
+            </td>
+          </tr>
+          <!--确认密码输入框-->
+          <tr>
+            <td>
+              <h3 class="register_h3">确认密码:</h3>
+            </td>
+            <td>
+              <input id="reg_password2" type="password" />
+              <p class="register_remind reg_pwd2">再次输入密码</p>
+            </td>
+          </tr>
+          <!--手机号码-->
+          <tr>
+            <td>
+              <h3 class="register_h3">手机号码:</h3>
+            </td>
+            <td>
+              <input id="telephone" type="text" />
+              <p class="register_remind telephone">请输入手机号码</p>
+            </td>
+          </tr>
+          <!--宿舍-->
+          <tr>
+            <td>
+              <h3 class="register_h3">宿舍:</h3>
+            </td>
+            <td style="text-align:left;padding:5px 0 0 10px;">
+              <select name="dorm" id="dorm">
+                <option label="菊园" value="菊园"></option>
+                <option label="桂圆" value="桂圆"></option>
+                <option label="梅园" value="梅园"></option>
+                <option label="兰园" value="兰园"></option>
+                <option label="竹园" value="竹园"></option>
+                <option label="枣园" value="枣园"></option>
+              </select>
+            </td>
+          </tr>
+
+          <!--验证码输入框-->
+          <tr>
+            <td>
+              <h3 class="register_h3">验证码:</h3>
+            </td>
+            <td>
+              <input id="inputCode" type="text" style="width:50%;" />
+              <div id="checkCode" class="code"></div>
+              <span class="changeCode">看不清换一张</span>
+            </td>
+          </tr>
+          <!--注册按钮-->
+          <tr>
+            <td></td>
+            <td>
+              <input id="register_btn" type="button" value="注册" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/login.js"></script>
+  <script>
+    function changeDiv(show, hidden) {
+      window.event.returnValue = false;
+      //显示传入参数show中的内容
+      document.getElementById(show).style.display = "block";
+      document.getElementById(show + '1').style['border-bottom'] = "2px solid #404040";
+      document.getElementById(show + '1').style.color = "#404040";
+      //隐藏传入参数hidden中的内容
+      document.getElementById(hidden).style.display = "none";
+      document.getElementById(hidden + '1').style.border = "none";
+      document.getElementById(hidden + '1').style.color = "#9b9b9b";
+    }
+
+
+  </script>
+</body>
+
+</html>

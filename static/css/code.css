@@ -1,0 +1,38 @@
+    .code {
+      font-family: Arial;
+      font-style: italic;
+      color: #404040;
+      font-size: 30px;
+      border: 0;
+      padding: 1px 2px;
+      letter-spacing: 3px;
+      font-weight: bolder;
+      float: right;
+      cursor: pointer;
+      width: 100px;
+      height: 35px;
+      margin-top: -20px;
+      line-height: 35px;
+      text-align: center;
+      vertical-align: middle;
+      background-color: #CCCCCC;
+      position:relative;
+      top: -20px;
+      /* left: 0px; */
+    }
+
+    span {
+      float: right;
+      text-decoration: none;
+      font-size: 12px;
+      color: #288bc4;
+      padding-left: 10px;
+      position: relative;
+      /* top: 0px; */
+      left: 85px;
+    }
+
+    span:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }

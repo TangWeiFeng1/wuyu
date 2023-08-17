@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的收藏</title>
+  <link href="/static/css/reset.css" rel="stylesheet">
+  <link href="/static/css/common.css" rel="stylesheet">
+  <link href="/static/css/icon/css/font.css" rel="stylesheet">
+  <link href="/static/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/collection.css">
+</head>
+<body>
+    <!--页面头部-->
+    <div id="header">
+      <!--导航栏-->
+      <div class="headerInner">
+        <!--四个导航链接-->
+        <div class="header_nav">
+          <ul>
+            <li class="active"><a href="/index/"><i class="icon fa-home"></i>首页</a>
+            </li>
+            <li><a href="/search/?uid={{ request.session.uid }}"><i class="icon fa-bullseye"></i>搜索</a></li>
+            <li><a style="color:black;" href="/collection/?uid={{ request.session.uid }}"><i class="icon fa-heart"></i>收藏</a></li>
+            <li class="operate">
+              <a href="#"><i class="icon fa-steam"></i>操作</a>
+              <ul class="operate_list">
+                <li><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></li>
+                <li><a href="/myGoods/?uid={{ request.session.uid }}">我的卖品</a></li>
+          </ul>
+        </div>
+  
+        <!--网站logo-->
+        <div class="header_logo">
+          <h1>
+            <img src="/static/images/logo.png" alt="物语logo" />
+          </h1>
+        </div>
+        <!-- 导航栏用户信息 -->
+        <div class="userinfo">
+          <a href="/settings/?uid={{request.session.uid}}" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+          <a href="/shoppingCar/?uid={{request.session.uid}}" style="color:black;"><i class="shopcar icon fa-shopping-basket" aria-hidden="true"> 购物车</i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 商品列表 -->
+    <div class="goodslist">
+      <!-- 商品信息 -->
+      {% for goods in goods_list %}
+      <div class="goods">
+        <a class="goods_img" href="/goods/?gid={{ goods.gid }}">
+          <img src="{{ goods.logo }}">
+        </a>
+        <h3><a href="#">{{ goods.name }} - {{ goods.info }}</a></h3>
+        <span class="price">￥{{goods.price}}</span>
+        <div class="icon_section">
+          <a href="/collection/?uid={{ request.session.uid }}&delete={{ goods.cid }}" class="del_collect collect"><i class="icon fa-heart"></i>取消收藏</a>
+          <a href="/shoppingCar/?gid={{ goods.gid }}&uid={{ request.session.uid }}" class="add"><i class="icon fa-plus-circle"></i>添加购物车</a>
+        </div>
+      </div>
+      {% endfor %}
+      <!--页码-->
+      <div class="page_list" style="top:520px;">
+        {% for i in a_list %}
+        <a href="/collection/?uid={{ request.session.uid }}&page={{ i }}">{{ i }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/collections.js"></script>
+</body>
+</html>

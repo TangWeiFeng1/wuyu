@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>商品详情</title>
+  <link href="/static/css/reset.css" rel="stylesheet" />
+  <link href="/static/css/common.css" rel="stylesheet" />
+  <link href="/static/css/font.css" rel="stylesheet" />
+  <link href="/static/css/icon/css/font.css" rel="stylesheet" />
+  <link href="/static/css/goods.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <!--页面头部-->
+  <div id="header">
+    <!--导航栏-->
+    <div class="headerInner">
+      <!--三个导航链接-->
+      <div class="header_nav">
+        <ul>
+          <li class="active"><a href="/index/"><i class="icon fa-home"></i>首页</a></li>
+          <li><a href="/search/?uid={{request.session.uid}}"><i class="icon fa-bullseye"></i>搜索</a></li>
+          <li><a href="/collection/?uid={{request.session.uid}}"><i class="icon fa-heart"></i>收藏</a></li>
+          <li class="operate">
+              <a href="#"><i class="icon fa-steam"></i>操作</a>
+              <ul class="operate_list">
+                <li><a href="/addGoods/?uid={{ request.session.uid }}">上传商品</a></li>
+                <li><a href="/myGoods/?uid={{ request.session.uid }}">我的卖品</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+      <div class="userinfo">
+        <a href="/settings/?uid={{request.session.uid}}" style="color:black;" class="settings"><i class="icon fa-user-circle-o"></i> {{ request.session.username }}</a>
+          <a href="/shoppingCar/?uid={{request.session.uid}}" style="color:black;"><i class="shopcar icon fa-shopping-basket" aria-hidden="true"> 购物车</i></a>
+        </div>
+      <!--网站logo-->
+      <div class="header_logo">
+        <h1>
+          <img src="/static/images/logo.png" alt="物语logo" />
+        </h1>
+      </div>
+    </div>
+  </div>
+  <!--商品详情-->
+  <div id="app" class="main">
+    <div class="Inner">
+      <div class="left_Inner">
+        <img src="{{ goods.logo }}" />
+        <div id="divIcon">
+          <a class="collection" href="/collection/?uid={{ request.session.uid }}&gid={{ goods.gid }}"><i class="icon fa-heart"></i>喜欢</a>
+          <a class="shopcart" href="/shoppingCar/?gid={{ goods.gid }}&uid={{ request.session.uid }}"><i class="icon fa-plus-circle"></i>加入购物车</a>
+        </div>
+      </div>
+      <div class="right_Inner">
+        <h2>{{ goods.name }} - {{ goods.info }}</h2>
+
+        <p class="goods_Introduce">
+          {{ goods.details }}
+        </p>
+
+        <el-button class="buy" type="text" @click="centerDialogVisible = true" style="    
+            color: #FFF;
+            font-size: 14px;
+            font-weight: 300;
+            width: 204px;
+            height: 45px;
+            display: inline-block;
+            background-color: #404040;
+            line-height: 20px;
+            text-align: center;
+            margin: 34px 0 50px 0;
+            border-radius: 4px;">物语商店 / ￥{{ goods.price }}</el-button>
+        <el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
+          <el-date-picker class="date" type="date" value-format=”yyyy-MM-dd” placeholder="选择日期" v-model="form.date1"
+            style="width: 100%;"></el-date-picker>
+          <el-time-picker class="time" value-format=”HH:mm:ss” placeholder="选择时间" v-model="form.date2"
+            style="width: 100%;"></el-time-picker>
+          <el-select v-model="form.region" placeholder="请选择收货地点">
+            <el-option label="菊园" value="菊园"></el-option>
+            <el-option label="桂圆" value="桂圆"></el-option>
+            <el-option label="梅园" value="梅园"></el-option>
+            <el-option label="兰园" value="兰园"></el-option>
+            <el-option label="竹园" value="竹园"></el-option>
+            <el-option label="枣园" value="枣园"></el-option>
+          </el-select>
+          <span id="uid" style="display:none;">{{ request.session.uid }}</span>
+          <span id="gid" style="display:none;">{{ goods.gid }}</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="centerDialogVisible = false">取 消</el-button>
+            <el-button class="save settlement_confirm" type="info" @click="centerDialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+
+      </div>
+      <div class="related">
+        <h3>相关推荐</h3>
+        <ul>
+          {% for goods in goods_list %}
+          <li><a href="#"><img src="{{ goods.logo }}" /></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery.cookie.js"></script>
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/element-ui/lib/index.js"></script>
+  <script src="/static/js/goods.js"></script>
+</body>
+
+</html>
